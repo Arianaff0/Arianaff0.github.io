@@ -1,4 +1,4 @@
-#Portfolio Website
+# Portfolio Website
 
 ## Description
 This is a portfolio website showcasing my development projects as well as design and mathematics. Unfortunately, my GitHub Page is quite outdated. I hadn’t taken the time to provide proper documentation or version control for my projects, but I plan to do so now. You're more than welcome to use this as a template for your site, just follow appropriate installation instructions here.
