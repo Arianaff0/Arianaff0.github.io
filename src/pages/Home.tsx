@@ -1,12 +1,16 @@
+import ScrollLink from "@/components/ScrollLink";
 import { useState, useEffect, useRef } from "react";
 import Navigation from "@/components/Navigation";
 import LaptopFrame from "@/components/LaptopFrame";
 import DeviceTable from "@/components/DeviceTable";
-import { Mail, Linkedin, Github } from "lucide-react";
+import EnterprisePortal from "@/components/EnterprisePortal";
+import ThesisPreview from "@/components/ThesisPreview";
+import { ArrowDown, ArrowUpRight, Mail, Linkedin } from "lucide-react";
 import homePageVideo from "@/assets/Home page.mp4";
 import resumePdf from "@/assets/resume.pdf";
 import netconview from "@/assets/netconview.png";
 import webinfra from "@/assets/webinfra.png";
+import marketMakingSimulator from "@/assets/Screenshot 2026-11-09 201331.png";
 import icecreamtycoon from "@/assets/icecream_tycoon.png";
 import asl from "@/assets/asl.png";
 import shehacks from "@/assets/shehacks.png";
@@ -40,92 +44,75 @@ const Home = () => {
   }, []);
 
   const developmentProjects = [
-    { id: 1, title: "Chatbot", year: "2025", tech: "Python, Streamlit, Huggingface", description: "An AI Semantic search chatbot that streamlines how Web Infrastructure team find information and resolve service ticket issues, enabling faster access to relevant documentation.", image: webinfra },
-    { id: 2, title: "NetconView - Web Application", year: "2025", tech: "C# MVC .NET, CSS, HTML", description: "Enabling a permitted userbase to perform Web Infrastructure Windows operations independently - eliminates some service ticket submissions.", image: netconview },
+    {
+      id: 3,
+      title: "Market-Making Simulator",
+      year: "2026",
+      tech: "C++, Google Test",
+      status: "In progress",
+      description: "An ongoing C++ project exploring market-making simulation, with a strong focus on software design patterns and testing with Google Test. I am using this project to deepen my approach to structuring maintainable, extensible software. The interface brings together simulation configuration, quoting controls, market information, portfolio metrics, and executed trades.",
+      image: marketMakingSimulator,
+    },
+    { id: 1, title: "Infrastructure Knowledge Assistant", year: "2025", tech: "Python, Streamlit, Hugging Face", description: "An AI-powered semantic search chatbot that helps the Web Infrastructure team find relevant documentation and resolve service ticket issues more efficiently.", image: webinfra },
+    { id: 2, title: "NetconView", year: "2025", tech: "C#, ASP.NET MVC, HTML, CSS", description: "A web application that enables authorized users to perform Web Infrastructure Windows operations independently, reducing the need to submit routine service tickets.", image: netconview },
   ];
 
-  const designProjects = [
-    { id: 1, title: "Brand Identity", year: "2024", medium: "Digital" },
-    { id: 2, title: "UI/UX Design", year: "2024", medium: "Digital" },
-    { id: 3, title: "Abstract Composition", year: "2024", medium: "Oil on Canvas" },
-    { id: 4, title: "Geometric Dreams", year: "2024", medium: "Digital" },
-    { id: 5, title: "Organic Forms", year: "2024", medium: "Mixed Media" },
-    { id: 6, title: "Color Study", year: "2023", medium: "Acrylic" },
-  ];
 
-  const mathProjects = [
-    { id: 1, title: "Graph Theory Research", date: "2024", topic: "Network Analysis" },
-    { id: 2, title: "Calculus Visualization", date: "2024", topic: "Interactive Plots" },
-    { id: 3, title: "Number Theory Proof", date: "2024", topic: "Prime Numbers" },
-    { id: 4, title: "Linear Algebra Study", date: "2023", topic: "Matrix Operations" },
-  ];
 
   return (
     <div className="min-h-screen">
+      <ScrollLink href="#development" className="skip-link">Skip to selected work</ScrollLink>
       <Navigation />
       
-      {/* Hero Section */}
-      <main className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Video */}
-        <div className="absolute inset-0 z-0">
-          <video
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-          >
+      <header id="top" className="hero-section">
+        <div className="hero-video" aria-hidden="true">
+          <video autoPlay muted loop playsInline preload="metadata">
             <source src={homePageVideo} type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-background/40" />
         </div>
-
-        {/* Content */}
-        <div className={`relative z-10 text-center px-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h1 className="text-6xl md:text-8xl font-inter font-bold mb-6 animate-fade-in">
-            Ariana Feng
-          </h1>
-          <p className="text-xl md:text-2xl font-inter text-muted-foreground max-w-2xl mx-auto animate-slide-up">
-            Art came first, then numbers and code. My name is Ariana Feng, and I combine visual storytelling, full-stack development, and problem-solving to build products that are beautiful, functional, and memorable.
-          </p>
-          <div className="mt-6 flex justify-center">
-            <a
-              href={resumePdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white/90 text-black text-sm font-medium shadow-sm hover:bg-white transition"
-            >
-              Resume
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+        <div className="hero-overlay" aria-hidden="true" />
+        <div className={`hero-copy container relative z-10 mx-auto px-6 text-center transition-opacity duration-700 ${isVisible ? "opacity-100" : "opacity-0"}`}>
+          <p className="eyebrow">Development / Design / Mathematics</p>
+          <h1>Ariana Feng<span className="text-primary">.</span></h1>
+          <p className="hero-statement">A creative eye. <em>An analytical mind.</em></p>
+          <p className="hero-description">Art came first, then numbers and code. I bring visual storytelling and mathematical thinking to full-stack development, building thoughtful tools for real problems.</p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <ScrollLink className="button-primary" href="#development">Explore my work <ArrowDown className="h-4 w-4" aria-hidden="true" /></ScrollLink>
+            <a className="button-secondary" href={resumePdf} target="_blank" rel="noopener noreferrer">View resume <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
           </div>
         </div>
-      </main>
+        <ScrollLink className="hero-scroll" href="#development">Scroll to discover <ArrowDown className="h-3 w-3" aria-hidden="true" /></ScrollLink>
+      </header>
 
       {/* Development Section */}
-      <section id="development" className="py-24 bg-background">
+      <main id="content">
+      <section id="development" className="section-space bg-background">
         <div className="container mx-auto px-6">
-          <h2 className="text-5xl md:text-6xl font-inter font-bold mb-16">Development</h2>
+          <div className="section-heading"><div><p className="eyebrow">01 / Building useful things</p><h2>Development</h2></div><p>Enterprise tools, simulations, and experiments. A selection of work across the stack.</p></div>
           
-          <div className="space-y-24">
+          <div className="space-y-16 md:space-y-24">
+            <EnterprisePortal />
             {developmentProjects.map((project) => (
-              <div key={project.id} className="grid md:grid-cols-2 gap-12 items-center">
+              <article key={project.id} className="project-row grid items-center gap-8 md:grid-cols-2 md:gap-12">
                 <LaptopFrame imageSrc={project.image} alt={project.title} />
                 <div>
                   <div>
-                    <h3 className="text-3xl font-inter font-semibold mb-4">{project.title}</h3>
-                    <div className="flex gap-3 text-sm text-muted-foreground mb-6">
+                    {project.status && (
+                      <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-border bg-muted/30 px-3 py-1 text-xs font-medium">
+                        <span className="h-1.5 w-1.5 rounded-full bg-foreground" aria-hidden="true" />
+                        {project.status}
+                      </span>
+                    )}
+                    <h3 className="mb-4 text-2xl font-inter font-semibold tracking-tight md:text-3xl">{project.title}</h3>
+                    <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mb-6">
                       <span>{project.year}</span>
-                      <span>•</span>
+                      <span aria-hidden="true">/</span>
                       <span>{project.tech}</span>
                     </div>
                     <p className="text-lg leading-relaxed text-muted-foreground">{project.description}</p>
                   </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
@@ -142,11 +129,11 @@ const Home = () => {
       />
 
       {/* Design Section */}
-      <section id="design" className="py-24 bg-muted/20">
+      <section id="design" className="section-space border-y border-border bg-muted/20">
         <div className="container mx-auto px-6">
-          <h2 className="text-5xl md:text-6xl font-inter font-bold mb-16">Design</h2>
+          <div className="section-heading"><div><p className="eyebrow">02 / A visual practice</p><h2>Design & art</h2></div><p>From digital storytelling to work made by hand. An exploration of form, texture, and identity.</p></div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {/* Promo video as first item in the collage */}
             <DesignCard
               key="promo"
@@ -182,7 +169,7 @@ const Home = () => {
 
             
             <DesignCard
-              key="promo"
+              key="clubsweek"
               imageSrc={clubsweek}
               title="Clubs Week IG Post"
               medium="Blender, Canva"
@@ -240,7 +227,7 @@ const Home = () => {
             />
 
             <DesignCard
-              key="charcoal"
+              key="snow"
               imageSrc={snow}
               title="Snow"
               medium="Pencil Crayon on Paper"
@@ -317,62 +304,50 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Mathematics Section */}
-      <section id="mathematics" className="py-24 bg-background">
+      <section id="mathematics" className="section-space">
         <div className="container mx-auto px-6">
-          <h2 className="text-5xl md:text-6xl font-inter font-bold mb-16">Mathematics</h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
-            <p> Courses taken at undergraduate level: Multivariable Calculus I, II, Linear Algebra I, II, Real Analysis, Statistics I, Complex Variables, Differential Equations, Financial
-Modelling, Optimization Methods, Cryptography. Wrote a Canadian Household Savings & Investment Behavior Analysis report using regression models (Elastic 
-Net, XGBoost) to forecast savings contributions. 
-</p>
-<p></p>
-<p></p>
-<p></p>
-            <p>Please email for past assignments and analysis report</p>
-            {/* {mathProjects.map((project) => (
-              <div key={project.id} className="group cursor-pointer overflow-hidden">
-                <div className="aspect-square bg-accent transition-transform duration-300 group-hover:scale-105" />
-                <div className="p-3">
-                  <h3 className="font-inter font-semibold mb-1">{project.title}</h3>
-                  <p className="text-xs text-muted-foreground">
-                    {project.date} • {project.topic}
-                  </p>
+          <div className="section-heading"><div><p className="eyebrow">03 / Thinking in systems</p><h2>Mathematics</h2></div><p>The analytical foundation behind how I model problems, recognize patterns, and build solutions.</p></div>
+          <ThesisPreview />
+          <div className="grid gap-8 lg:grid-cols-[1fr_1.15fr]">
+            <article className="research-card">
+              <p className="eyebrow">Applied analysis</p>
+              <h3 className="mt-4 text-2xl font-inter font-semibold tracking-tight">Canadian Household Savings & Investment Behavior</h3>
+              <p className="mt-5 leading-relaxed text-muted-foreground">An analysis of household savings and investment behavior using regression models to forecast savings contributions.</p>
+              <div className="mt-6 flex flex-wrap gap-2"><span className="tech-tag">Elastic Net</span><span className="tech-tag">XGBoost</span><span className="tech-tag">Regression analysis</span></div>
+              <a className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-primary" href="mailto:arianafeng07@gmail.com?subject=Mathematics%20report%20request">Request the report or past assignments <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
+            </article>
+            <div className="coursework">
+              <h3 className="mb-6 text-lg font-inter font-semibold">Undergraduate coursework</h3>
+              {[
+                { title: "Foundations & analysis", courses: "Multivariable Calculus I & II, Linear Algebra I & II, Real Analysis, Complex Variables" },
+                { title: "Statistics & computation", courses: "Statistics I & II, Computer Algebra, Optimization Methods, Cryptography" },
+                { title: "Models & dynamics", courses: "Math Biology, Nonlinear Dynamics, Ordinary Differential Equations, Financial Modelling" },
+              ].map((group) => (
+                <div key={group.title} className="border-t border-border py-5">
+                  <h4 className="mb-2 text-sm font-inter font-semibold text-primary">{group.title}</h4>
+                  <p className="text-sm leading-7 text-muted-foreground">{group.courses}</p>
                 </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      </main>
+
+      <footer id="contact" className="contact-section">
+        <div className="container mx-auto px-6">
+          <div className="grid gap-8 md:grid-cols-2 md:items-end">
+            <div><p className="eyebrow">04 / Start a conversation</p><h2>Let's make<br /><em>something thoughtful.</em></h2></div>
+            <div className="md:pb-2"><p className="mb-6 max-w-md leading-relaxed">Have a project in mind, an opportunity to share, or a question about my work? I'd love to hear from you.</p>
+              <div className="flex flex-wrap gap-3">
+                <a href="mailto:arianafeng07@gmail.com" className="button-primary"><Mail className="h-4 w-4" aria-hidden="true" /> Get in touch</a>
+                <a href="https://www.linkedin.com/in/ariana-feng-89054025b/" target="_blank" rel="noopener noreferrer" className="button-secondary"><Linkedin className="h-4 w-4" aria-hidden="true" /> LinkedIn <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></a>
               </div>
-            ))} */}
-
+            </div>
           </div>
+          <div className="footer-bottom"><span>&copy; {new Date().getFullYear()} Ariana Feng</span><span>Development. Design. Mathematics.</span><ScrollLink href="#top">Back to top &uarr;</ScrollLink></div>
         </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-24 bg-muted/20">
-        <div className="container mx-auto px-6 max-w-4xl text-center">
-          <h2 className="text-5xl md:text-6xl font-inter font-bold mb-8">Get in Touch</h2>
-          <p className="text-xl text-muted-foreground mb-12">
-            Interested in collaborating or just want to say hello? I'd love to hear from you.
-          </p>
-          
-          <div className="flex justify-center gap-8 mb-12">
-            <a href="mailto:arianafeng07@gmail.com" className="flex items-center gap-2 hover:text-ballet-pink transition-colors">
-              <Mail className="w-5 h-5" />
-              <span>Email</span>
-            </a>
-            <a href="https://www.linkedin.com/in/ariana-feng-89054025b/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-ballet-pink transition-colors">
-              <Linkedin className="w-5 h-5" />
-              <span>LinkedIn</span>
-            </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-ballet-pink transition-colors">
-              <Github className="w-5 h-5" />
-              <span>GitHub</span>
-            </a>
-          </div>
-          
-          <p className="text-sm text-muted-foreground">© 2025 Ariana Feng. All rights reserved.</p>
-        </div>
-      </section>
+      </footer>
     </div>
   );
 };
@@ -400,33 +375,33 @@ const DesignCard = ({
   }, [muted]);
 
   return (
-    <figure className="relative group overflow-hidden rounded-sm bg-gray-100">
+    <figure className="art-card group overflow-hidden rounded-lg border border-border bg-card">
       {/* fixed aspect container so grid aligns and whitespace is minimized */}
-      <div className="w-full aspect-square bg-black flex items-center justify-center">
+      <div className="w-full aspect-square bg-muted/40 flex items-center justify-center overflow-hidden">
         {videoSrc ? (
           <video
             ref={ref}
             src={videoSrc}
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
             autoPlay
             loop
             playsInline
             muted={muted}
-            preload="auto"
+            preload="metadata"
           />
         ) : imageSrc ? (
           // keeps full image visible, no cropping
-          <img src={imageSrc} alt={title} className="w-full h-full object-contain" />
+          <img src={imageSrc} alt={title} loading="lazy" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.03]" />
         ) : (
           <div className="w-full h-full bg-secondary" />
         )}
       </div>
 
 {/* hover overlay: absolutely positioned so it consumes no layout space */}
-      <figcaption className="absolute inset-0 flex items-end p-4 pointer-events-none">
-        <div className="w-full opacity-0 group-hover:opacity-100 transition bg-black/45 text-white p-3 rounded-sm pointer-events-auto">
+      <figcaption className="p-4">
+        <div className="w-full">
           <div className="text-sm font-inter font-semibold">{title}</div>
-          <div className="text-xs mt-1">{medium} • {year}</div>
+          <div className="text-xs mt-2 leading-relaxed text-muted-foreground">{medium} &middot; {year}</div>
           {videoSrc && (
             <button
               onClick={(e) => {

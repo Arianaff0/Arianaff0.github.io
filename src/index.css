@@ -8,8 +8,8 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --background: 40 33% 98%;
+    --foreground: 180 13% 14%;
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 0%;
@@ -17,14 +17,14 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
 
-    --primary: 0 0% 0%;
+    --primary: 164 35% 28%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 340 100% 95%;
     --secondary-foreground: 0 0% 0%;
 
-    --muted: 30 20% 90%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 38 18% 91%;
+    --muted-foreground: 170 5% 39%;
 
     --accent: 340 82% 85%;
     --accent-foreground: 0 0% 0%;
@@ -32,9 +32,9 @@ All colors MUST be HSL.
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 20% 90%;
+    --border: 38 16% 85%;
     --input: 30 20% 90%;
-    --ring: 340 82% 85%;
+    --ring: 164 35% 28%;
 
     --radius: 0.5rem;
 
@@ -121,4 +121,55 @@ All colors MUST be HSL.
       transform: translateY(0);
     }
   }
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 7rem; }
+  body { -webkit-font-smoothing: antialiased; }
+  ::selection { background: hsl(164 26% 82%); color: hsl(180 13% 14%); }
+  a, button { -webkit-tap-highlight-color: transparent; }
+  a:focus-visible, button:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 5px; }
+}
+@layer components {
+  .site-nav { @apply sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-lg; }
+  .wordmark { @apply text-xl font-semibold tracking-tight; }
+  .wordmark span { @apply text-primary; }
+  .nav-link { @apply inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-primary; }
+  .eyebrow { @apply text-[10px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-xs; }
+  .hero-section { @apply relative flex min-h-[calc(100svh-5rem)] items-center justify-center overflow-hidden py-24; }
+  .hero-copy h1 { @apply mt-6 font-inter text-5xl font-semibold tracking-[-0.065em] sm:text-7xl xl:text-8xl; }
+  .hero-statement { @apply mt-6 font-playfair text-3xl leading-tight tracking-tight sm:text-4xl xl:text-5xl; }
+  .hero-statement em { @apply font-normal text-primary; }
+  .hero-description { @apply mx-auto mt-6 max-w-2xl text-base leading-8 text-foreground/80 md:text-lg; }
+  .button-primary { @apply inline-flex min-h-12 items-center justify-center gap-3 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90; }
+  .button-secondary { @apply inline-flex min-h-12 items-center justify-center gap-3 rounded-md border border-border bg-background px-5 py-3 text-sm font-medium transition-colors hover:bg-muted/60; }
+  .hero-video { @apply absolute inset-0 bg-muted; }
+  .hero-overlay { @apply absolute inset-0 bg-background/60; }
+  .hero-scroll { @apply absolute bottom-7 z-10 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-widest; }
+  .hero-video video { @apply h-full w-full object-cover; }
+  .section-space { @apply py-20 md:py-28; }
+  .section-heading { @apply mb-10 flex flex-col justify-between gap-5 md:mb-14 md:flex-row md:items-end; }
+  .section-heading h2 { @apply mt-3 font-playfair text-4xl tracking-tight sm:text-5xl md:text-6xl; }
+  .section-heading > p { @apply max-w-sm text-sm leading-7 text-muted-foreground; }
+  .featured-project { @apply rounded-xl border border-border bg-card/70 p-5 sm:p-8 lg:p-10; }
+  .project-row { @apply border-t border-border pt-12; }
+  .screenshot-frame { @apply w-full overflow-hidden rounded-lg border border-border bg-card shadow-[0_12px_40px_-20px_hsl(180_13%_14%/0.25)]; }
+  .screenshot-toolbar { @apply flex h-8 items-center gap-1.5 border-b border-border bg-muted/50 px-3; }
+  .screenshot-toolbar > span { @apply h-1.5 w-1.5 rounded-full bg-foreground/20; }
+  .screenshot-toolbar > div { @apply ml-2 text-[9px] tracking-wide text-muted-foreground; }
+  .art-card { @apply transition-shadow duration-300 hover:shadow-lg; }
+  .research-card { @apply rounded-xl border border-border bg-muted/25 p-6 sm:p-8; }
+  .coursework { @apply px-1 py-3 sm:px-5; }
+  .tech-tag { @apply rounded-full border border-border bg-background px-3 py-1 text-xs; }
+  .contact-section { @apply border-t border-border bg-muted/40 pt-16 md:pt-24; }
+  .contact-section h2 { @apply mt-5 font-playfair text-4xl leading-tight tracking-tight lg:text-5xl; }
+  .contact-section h2 em { @apply text-primary; }
+  .footer-bottom { @apply mt-16 flex flex-wrap justify-between gap-4 border-t border-border py-6 text-[10px] tracking-wide text-muted-foreground md:mt-20; }
+  .skip-link { @apply fixed left-4 top-4 z-50 -translate-y-24 rounded-md bg-primary px-5 py-3 text-sm text-primary-foreground focus:translate-y-0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .hero-video video { display: none; }
+  .hero-video { background: linear-gradient(145deg, hsl(164 26% 82%), hsl(38 28% 88%)); }
 }
